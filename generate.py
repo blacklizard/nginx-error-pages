@@ -3,6 +3,8 @@ import requests
 r = requests.get('http://webconcepts.info/concepts/http-status-code.json')
 json = r.json()
 
+print json
+
 for i in json["values"]:
     template = "templates/" + i["value"][0:1] + "xx.html"
     with open(template) as f:
@@ -25,4 +27,4 @@ with open("snippets/error_pages_content.conf", "w") as epc:
         v = int(i["value"])
         if v < 400 or v > 599:
             continue
-        print("error_page %d /%d.html;" % (v,v), file=epc)
+        print("error_page %d /%d.html;" % (v,v))
